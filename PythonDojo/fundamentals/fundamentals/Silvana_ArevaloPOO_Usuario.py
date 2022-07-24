@@ -1,9 +1,8 @@
-"""
-    Programacion orientada a Objetos 1
-    Silvana Arévaldo
-"""
+#    Programacion orientada a Objetos 1
+#    Silvana Arévaldo
 
-class Usuario():
+
+class Usuario:
     def __init__(self, nombre, email) -> None:
         self.nombre = nombre
         self.email = email
@@ -17,16 +16,16 @@ class Usuario():
     def hacer_deposito(self, cantidad):
         self.balance += cantidad
         
-    def transferencia(self, cantidad, nombre_receptor):
-        if nombre_receptor == self.nombre:
+    def transferencia(self, cantidad, usuario_receptor):
+        if usuario_receptor.nombre == self.nombre:
             # si soy receptor de transferencia, incrementar y actualizo balance
             self.balance += cantidad
             print(f"{self.nombre} ha recibido {cantidad}")
         else:
             # soy emisor de la transferencia, debito y retorno quien debe recibir
             self.balance -= cantidad
-            print(f"ha transferido {cantidad} al usuario {nombre_receptor}")
-        return (cantidad, nombre_receptor)
+            print(f"ha transferido {cantidad} al usuario {usuario_receptor.nombre}")
+        return (cantidad, usuario_receptor.nombre)
 
 
 juanaArco = Usuario(nombre='Maria de Arco',
@@ -60,7 +59,7 @@ print(carlSagan.mostrar_balance_usuario())
 
 # transferencia de dinero
 print("Haciendo transferencia")
-(cantidad_t, receptor_q) = juanaArco.transferencia(100, 'Carl Sagan')
-carlSagan.transferencia(cantidad=cantidad_t, nombre_receptor=receptor_q)
+(cantidad_t, receptor_q) = juanaArco.transferencia(100, carlSagan)
+# carlSagan.transferencia(cantidad=cantidad_t, nombre_receptor=receptor_q)
 print(juanaArco.mostrar_balance_usuario())
 print(carlSagan.mostrar_balance_usuario())
