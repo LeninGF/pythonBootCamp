@@ -33,15 +33,15 @@ class CuentaBancaria:
             self.balance += self.balance*self.tasa_interes
         return self
     @classmethod
-    def retornar_info_cuenta(cls):
+    def retornar_info_cuentas(cls):
         for i, cuenta in enumerate(cls.todas_las_cuentas):
-            print(f"Cuenta {i}: "+ str(cuenta.balance))
-            
+            print(f"Cuenta {i}: ")
+            cuenta.mostrar_info_cuenta()
 
-cuenta1 = CuentaBancaria()
+cuenta1 = CuentaBancaria(tasa_interes=0.03, balance=800)
 cuenta1.deposito(100).deposito(50).retiro(60).generar_interes().mostrar_info_cuenta()
 
-cuenta2 = CuentaBancaria()
+cuenta2 = CuentaBancaria(balance=50)
 cuenta2.deposito(300).deposito(50).retiro(100).retiro(100).retiro(50).retiro(150).generar_interes().mostrar_info_cuenta()
 
-CuentaBancaria.retornar_info_cuenta()
+CuentaBancaria.retornar_info_cuentas()
